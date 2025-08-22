@@ -1,0 +1,3 @@
+name,role,manufacturer,type,status,site,location,rack,position,rack face,airflow
+SW FD2B,SWITCH,,Cisco,switch stack 4,Active,SEDUC,FD2B,SEDUC FD2B,42,Front,Front to rear
+SW FD2B,SWITCH,,Cisco,switch stack 4,Active,SEDUC,FD2B,SEDUC FD2B,42,Front,Front to rear

@@ -1,0 +1,9 @@
+Nome,Site,Local,Status,ID do facility,Inquilino,Função,Tipo,Altura,Dispositivos,Espaço,ID,Grupo de Inquilinos,Número de série,Etiqueta de patrimônio,Formato físico,Unidade inicial,Largura,Largura Externa,Altura externa,Profundidade Externa,Profundidade de montagem,Fluxo de ar,Peso,Peso Máximo,Comentários,Alimentação Elétrica,Descrição,Contatos,Etiquetas,Criado,Última atualização,Fabricante
+CONTEINER 01,SEDUC,CONTEINER,Ativo,,,redundaria,,42U,7,16.666666666666664%,11,,,,Rack fechado,1,19 inches,,,,,,,,,0%,,,,2025-08-14T17:15:22.273115+00:00,2025-08-22T15:01:14.557787+00:00,
+CONTEINER 02,SEDUC,CONTEINER,Ativo,,,redundaria,,42U,9,35.714285714285715%,12,,,,Rack fechado,1,19 inches,,,,,,,,,0%,,,,2025-08-14T17:15:31.162142+00:00,2025-08-22T15:01:21.078021+00:00,
+SEDUC DD01,SEDUC,DADOS,Ativo,,,servidores,,42U,1,11.904761904761903%,13,,,,Rack fechado,1,19 inches,,,,,,,,,0%,,,,2025-08-20T15:25:25.028335+00:00,2025-08-22T14:57:56.566944+00:00,
+SEDUC FD0A,SEDUC,FD0A,Ativo,,,Distribuicao,,42U,2,7.142857142857142%,4,,,,Rack aberto de 2 colunas,1,19 inches,,,,,,,,,0%,,,,2025-08-12T17:22:51.844891+00:00,2025-08-22T14:59:34.449447+00:00,
+SEDUC FD0B,SEDUC,FD0B,Ativo,,,Distribuicao,,42U,1,2.380952380952381%,5,,,,Rack fechado,1,19 inches,,,,,,,,,0%,,,,2025-08-13T13:08:32.776166+00:00,2025-08-22T14:59:43.102445+00:00,
+SEDUC FD1A,SEDUC,FD1A,Ativo,,,Distribuicao,,42U,0,0.0%,8,,,,Rack aberto de 2 colunas,1,19 inches,,,,,,,,,0%,,,,2025-08-13T15:19:37.418486+00:00,2025-08-22T14:59:48.172835+00:00,
+SEDUC FD1B,SEDUC,FD1B,Ativo,,,Distribuicao,,42U,1,2.380952380952381%,9,,,,Rack aberto de 2 colunas,1,19 inches,,,,,,,,,0%,,,,2025-08-13T15:22:02.890997+00:00,2025-08-22T15:00:00.940087+00:00,
+SEDUC DT01,SEDUC,TELECOM,Ativo,,,infovia,,42U,0,0.0%,17,,,,Rack fechado,1,19 inches,,,,,,,,,0%,,,,2025-08-22T13:43:33.224812+00:00,2025-08-22T14:59:17.444263+00:00,

@@ -1,0 +1,22 @@
+Name,Role,Tenant,Manufacturer,Type,Status,Site,Location,Rack,Position,Rack face,Airflow
+AP 0A,AP,,Allied Telesis,TQ4600,Active,SEDUC,FD0A,SEDUC FD0A,40,Front,
+APIC_CONTEINER,ACI,,Cisco,APIC-M3,Active,SEDUC,CONTEINER,CONTEINER 01,12,Front,
+DATACOM-CONTEINER,SWITCH,,Datacom,DM4100,Active,SEDUC,CONTEINER,CONTEINER 02,23,Front,
+EXTREME-G7-01,SWITCH,,Extreme Networks,X620-16x,Active,SEDUC,CONTEINER,CONTEINER 02,21,Front,Rear to front
+EXTREME-G7-02,cluster-g7,,Extreme Networks,X620-16x,Active,SEDUC,CONTEINER,CONTEINER 02,20,Front,Rear to front
+LEAF_CONTEINER_01,ACI,,Cisco,Nexus 93108TC-EX,Active,SEDUC,CONTEINER,CONTEINER 01,16,Front,
+LEAF_CONTEINER_02,ACI,,Cisco,Nexus 93108TC-EX,Active,SEDUC,CONTEINER,CONTEINER 01,14,Front,
+ntnx04a,cluster-g7,,Nutanix,Nutanix-G7,Active,SEDUC,CONTEINER,CONTEINER 02,17,Front,Front to rear
+ntnx05a,cluster-g7,,Nutanix,Nutanix-G7,Active,SEDUC,CONTEINER,CONTEINER 02,15,Front,Front to rear
+ntnx06a,cluster-g7,,Nutanix,Nutanix-G7,Active,SEDUC,CONTEINER,CONTEINER 02,13,Front,Front to rear
+ntnx07a,cluster-g7,,Nutanix,Nutanix-G7,Active,SEDUC,CONTEINER,CONTEINER 02,11,Front,Front to rear
+ntnx08a,cluster-g7,,Nutanix,Nutanix-G7,Active,SEDUC,CONTEINER,CONTEINER 02,9,Front,Front to rear
+ntnx09a,cluster-g7,,Nutanix,Nutanix-G7,Active,SEDUC,CONTEINER,CONTEINER 02,7,Front,Front to rear
+PROXMOX,SERVIDOR,,Dell,PowerEdge T630,Active,SEDUC,DADOS,SEDUC DD01,3,Front,
+SPINE_CONTEINER_01,ACI,,Cisco,Nexus 9332C,Active,SEDUC,CONTEINER,CONTEINER 01,20,Front,
+SPINE_CONTEINER_02,ACI,,Cisco,Nexus 9332C,Active,SEDUC,CONTEINER,CONTEINER 01,18,Front,
+SW FD0A,SWITCH,,Cisco,switch stack 4,Active,SEDUC,FD0A,SEDUC FD0A,42,Front,Front to rear
+SW FD0B,SWITCH,,Cisco,switch stack 2,Active,SEDUC,FD0B,SEDUC FD0B,42,Front,
+SW FD1B,SWITCH,,Cisco,switch stack 3,Active,SEDUC,FD1B,SEDUC FD1B,42,Front,
+TPS3,IPS,,Trend Micro,TIPPINGPOINT 5500TX,Active,SEDUC,CONTEINER,CONTEINER 01,10,Front,Front to rear
+TPS4,IPS,,Trend Micro,TIPPINGPOINT 5500TX,Active,SEDUC,CONTEINER,CONTEINER 01,8,Front,Front to rear

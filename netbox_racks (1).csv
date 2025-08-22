@@ -1,0 +1,9 @@
+Name,Site,Location,Status,Facility ID,Tenant,Role,Type,Height,Devices,Space,ID,Tenant Group,Serial number,Asset tag,Form factor,Starting unit,Width,Outer Width,Outer Height,Outer Depth,Mounting depth,Airflow,Weight,Max Weight,Comments,Power,Description,Contacts,Tags,Created,Last updated,Manufacturer
+CONTEINER 01,SEDUC,CONTEINER,Active,,,redundaria,,42U,7,16.666666666666664%,11,,,,4-post cabinet,1,19 inches,,,,,,,,,0%,,,,2025-08-14T17:15:22.273115+00:00,2025-08-22T15:01:14.557787+00:00,
+CONTEINER 02,SEDUC,CONTEINER,Active,,,redundaria,,42U,9,35.714285714285715%,12,,,,4-post cabinet,1,19 inches,,,,,,,,,0%,,,,2025-08-14T17:15:31.162142+00:00,2025-08-22T15:01:21.078021+00:00,
+SEDUC DD01,SEDUC,DADOS,Active,,,servidores,,42U,1,11.904761904761903%,13,,,,4-post cabinet,1,19 inches,,,,,,,,,0%,,,,2025-08-20T15:25:25.028335+00:00,2025-08-22T14:57:56.566944+00:00,
+SEDUC FD0A,SEDUC,FD0A,Active,,,Distribuicao,,42U,2,7.142857142857142%,4,,,,2-post frame,1,19 inches,,,,,,,,,0%,,,,2025-08-12T17:22:51.844891+00:00,2025-08-22T14:59:34.449447+00:00,
+SEDUC FD0B,SEDUC,FD0B,Active,,,Distribuicao,,42U,1,2.380952380952381%,5,,,,4-post cabinet,1,19 inches,,,,,,,,,0%,,,,2025-08-13T13:08:32.776166+00:00,2025-08-22T14:59:43.102445+00:00,
+SEDUC FD1A,SEDUC,FD1A,Active,,,Distribuicao,,42U,0,0.0%,8,,,,2-post frame,1,19 inches,,,,,,,,,0%,,,,2025-08-13T15:19:37.418486+00:00,2025-08-22T14:59:48.172835+00:00,
+SEDUC FD1B,SEDUC,FD1B,Active,,,Distribuicao,,42U,1,2.380952380952381%,9,,,,2-post frame,1,19 inches,,,,,,,,,0%,,,,2025-08-13T15:22:02.890997+00:00,2025-08-22T15:00:00.940087+00:00,
+SEDUC DT01,SEDUC,TELECOM,Active,,,infovia,,42U,0,0.0%,17,,,,4-post cabinet,1,19 inches,,,,,,,,,0%,,,,2025-08-22T13:43:33.224812+00:00,2025-08-22T14:59:17.444263+00:00,
