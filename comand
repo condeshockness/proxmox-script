@@ -1,1 +1,19 @@
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/netbox.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/docker-install.sh)"
+
+docker run -d -p 5216:5216 -v myspeed:/myspeed/data --restart=unless-stopped --name MySpeed germannewsmaker/myspeed
+
+#---------------------------------------------------------------------#
+#     Homarr - A simple, yet powerful dashboard for your server.      #
+#---------------------------------------------------------------------#
+services:
+  myspeed:
+    container_name: homarr
+    image: germannewsmaker/myspeed
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /ct/myspeed/data:/myspeed/data
+    environment:
+      - SECRET_ENCRYPTION_KEY=97f10f3b89be9f70ec6d6b557757afa181450c3747a01d8da5f08c5f1e03f6d1
+    ports:
+      - '5216:5216'
