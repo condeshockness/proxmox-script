@@ -17,12 +17,12 @@ PORTAINER_LATEST_VERSION=$(get_latest_release "portainer/portainer")
 PORTAINER_AGENT_LATEST_VERSION=$(get_latest_release "portainer/agent")
 DOCKER_COMPOSE_LATEST_VERSION=$(get_latest_release "docker/compose")
 
-msg_info "Installing Docker $DOCKER_LATEST_VERSION"
+#msg_info "Installing Docker $DOCKER_LATEST_VERSION"
 DOCKER_CONFIG_PATH='/etc/docker/daemon.json'
 mkdir -p $(dirname $DOCKER_CONFIG_PATH)
 echo -e '{\n  "log-driver": "journald"\n}' >/etc/docker/daemon.json
 $STD sh <(curl -fsSL https://get.docker.com)
-msg_ok "Installed Docker $DOCKER_LATEST_VERSION"
+#msg_ok "Installed Docker $DOCKER_LATEST_VERSION"
 
 read -r -p "${TAB3}Install Docker Compose v2 plugin? <y/N> " prompt_compose
 if [[ ${prompt_compose,,} =~ ^(y|yes)$ ]]; then
@@ -58,7 +58,7 @@ else
       -v /var/run/docker.sock:/var/run/docker.sock \
       -v /var/lib/docker/volumes:/var/lib/docker/volumes \
       portainer/agent
-    msg_ok "Installed Portainer Agent $PORTAINER_AGENT_LATEST_VERSION"
+#    msg_ok "Installed Portainer Agent $PORTAINER_AGENT_LATEST_VERSION"
   fi
 fi
 
@@ -76,7 +76,7 @@ case "${socket_choice,,}" in
 esac
 
 if [[ -n "$socket" ]]; then
-  msg_info "Enabling Docker TCP socket on $socket"
+#  msg_info "Enabling Docker TCP socket on $socket"
   $STD apt-get install -y jq
 
   tmpfile=$(mktemp)
@@ -103,7 +103,7 @@ fi
 motd_ssh
 customize
 
-msg_info "Cleaning up"
+#msg_info "Cleaning up"
 $STD apt-get -y autoremove
 $STD apt-get -y autoclean
-msg_ok "Cleaned"
+#msg_ok "Cleaned"
