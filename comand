@@ -1,5 +1,7 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/docker-install.sh)"
 
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/npm-install.sh)"
+
 docker run -d -p 5216:5216 -v myspeed:/myspeed/data --restart=unless-stopped --name MySpeed germannewsmaker/myspeed
 
 #---------------------------------------------------------------------#
