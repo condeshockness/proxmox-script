@@ -34,19 +34,9 @@ curl -fsSL "https://raw.githubusercontent.com/ZoeyVid/NPMplus/refs/heads/develop
 msg_ok "Fetched NPMplus"
 
 attempts=0
-while true; do
-  read -r -p "${TAB3}Enter your TZ Identifier (e.g., Europe/Berlin): " TZ_INPUT
-  if validate_tz "$TZ_INPUT"; then
-    break
-  fi
-  msg_error "Invalid timezone! Please enter a valid TZ identifier."
+TZ=America/Porto_velho
 
-  attempts=$((attempts + 1))
-  if [[ "$attempts" -ge 3 ]]; then
-    msg_error "Maximum attempts reached. Exiting."
-    exit 1
-  fi
-done
+
 
 read -r -p "${TAB3}Enter your ACME Email: " ACME_EMAIL_INPUT
 
