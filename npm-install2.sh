@@ -6,18 +6,17 @@
 # Source: https://github.com/ZoeyVid/NPMplus
 
 
-
 msg_info "Installing Dependencies"
-$STD apt install \
+$STD apk add \
   tzdata \
   gawk \
   yq
 msg_ok "Installed Dependencies"
 
 msg_info "Installing Docker & Compose"
-$STD apt-get -y install docker
-$STD systemctl docker start
-$STD apt-get -y update docker
+$STD apk add docker
+$STD rc-service docker start
+$STD rc-update add docker default
 
 get_latest_release() {
   curl -fsSL https://api.github.com/repos/$1/releases/latest | grep '"tag_name":' | cut -d'"' -f4
