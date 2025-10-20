@@ -50,9 +50,9 @@ cd /opt
 #RELEASE=$(curl -fsSL https://api.github.com/repos/netbox-community/netbox/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
 #curl -fsSL "https://github.com/netbox-community/netbox/archive/refs/tags/v${RELEASE}.zip" -o "v${RELEASE}.zip"
 #$STD unzip "v${RELEASE}.zip"
-sudo wget https://github.com/netbox-community/netbox/archive/refs/tags/v4.4.4.tar.gz
-sudo tar -xzf v4.4.4.tar.gz -C /opt
-sudo ln -s /opt/netbox-4.4.4/ /opt/netbox
+wget https://github.com/netbox-community/netbox/archive/refs/tags/v4.4.4.tar.gz
+tar -xzf v4.4.4.tar.gz -C /opt
+ln -s /opt/netbox-4.4.4/ /opt/netbox
 
 #mv /opt/netbox-"${RELEASE}"/ /opt/netbox
 
@@ -62,7 +62,7 @@ chown --recursive netbox /opt/netbox/netbox/reports/
 chown --recursive netbox /opt/netbox/netbox/scripts/
 
 cd /opt/netbox/netbox/netbox/
-sudo cp configuration_example.py configuration.py
+cp configuration_example.py configuration.py
 #mv /opt/netbox/netbox/netbox/configuration_example.py /opt/netbox/netbox/netbox/configuration.py
 
 SECRET_KEY=$(python3 /opt/netbox/netbox/generate_secret_key.py)
