@@ -10,7 +10,6 @@ msg_info "Instalando Dependencias"
 $STD apt-get install -y \
   apache2 \
   redis-server \
-  postgresql \
   build-essential \
   libxml2-dev \
   libxslt1-dev \
@@ -20,7 +19,7 @@ $STD apt-get install -y \
   zlib1g-dev
 msg_ok "Instalado Dependencias"
 
-PG_VERSION="18" setup_postgresql
+PG_VERSION="16" setup_postgresql
 
 msg_info "Instalando Python"
 $STD apt-get install -y \

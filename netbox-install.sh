@@ -1,16 +1,27 @@
 #!/usr/bin/env bash
 
+# Copyright (c) 2021-2025 community-scripts ORG
+# Author: bvdberg01
+# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# Source: https://netboxlabs.com/
 
-msg_ok() {
-    echo -e "\e[32m[OK]\e[0m $1"
-}
+source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"
+color
+verb_ip6
+catch_errors
+setting_up_container
+network_check
+update_os
 
-
-msg_info "Instalando Dependencias"
+msg_info "Installing Dependencies"
 $STD apt-get install -y \
   apache2 \
   redis-server \
   postgresql \
+  python3 \
+  python3-pip \
+  python3-venv \
+  python3-dev \
   build-essential \
   libxml2-dev \
   libxslt1-dev \
@@ -18,19 +29,9 @@ $STD apt-get install -y \
   libpq-dev \
   libssl-dev \
   zlib1g-dev
-msg_ok "Instalado Dependencias"
+msg_ok "Installed Dependencies"
 
-PG_VERSION="18" setup_postgresql
-
-msg_info "Instalando Python"
-$STD apt-get install -y \
-  python3 \
-  python3-pip \
-  python3-venv \
-  python3-dev
-msg_ok "Instalado Python"
-
-msg_info "Configuração PostgreSQL"
+msg_info "Setting up PostgreSQL"
 DB_NAME=netbox
 DB_USER=netbox
 DB_PASS=$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | cut -c1-13)
@@ -42,14 +43,14 @@ $STD sudo -u postgres psql -c "CREATE DATABASE $DB_NAME WITH OWNER $DB_USER TEMP
   echo -e "Netbox Database Password: \e[32m$DB_PASS\e[0m"
   echo -e "Netbox Database Name: \e[32m$DB_NAME\e[0m"
 } >>~/netbox.creds
-msg_ok "Configurando PostgreSQL"
+msg_ok "Set up PostgreSQL"
 
-msg_info "Instalando NetBox (Patience)"
+msg_info "Installing NetBox (Patience)"
 cd /opt
-RELEASE=$(curl -fsSL https://api.github.com/repos/netbox-community/netbox/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
-curl -fsSL "https://github.com/netbox-community/netbox/archive/refs/tags/v${RELEASE}.zip" -o "v${RELEASE}.zip"
-$STD unzip "v${RELEASE}.zip"
-mv /opt/netbox-"${RELEASE}"/ /opt/netbox
+RELEASE=$(curl -s https://api.github.com/repos/netbox-community/netbox/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
+wget -q "https://github.com/netbox-community/netbox/archive/refs/tags/v${RELEASE}.zip"
+unzip -q "v${RELEASE}.zip"
+mv /opt/netbox-${RELEASE}/ /opt/netbox
 
 $STD adduser --system --group netbox
 chown --recursive netbox /opt/netbox/netbox/media/
@@ -63,8 +64,8 @@ ESCAPED_SECRET_KEY=$(printf '%s\n' "$SECRET_KEY" | sed 's/[&/\]/\\&/g')
 
 sed -i 's/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = ["*"]/' /opt/netbox/netbox/netbox/configuration.py
 sed -i "s|SECRET_KEY = ''|SECRET_KEY = '${ESCAPED_SECRET_KEY}'|" /opt/netbox/netbox/netbox/configuration.py
-sed -i "/DATABASES = {/,/}/s/'USER': '[^']*'/'USER': '$DB_USER'/" /opt/netbox/netbox/netbox/configuration.py
-sed -i "/DATABASES = {/,/}/s/'PASSWORD': '[^']*'/'PASSWORD': '$DB_PASS'/" /opt/netbox/netbox/netbox/configuration.py
+sed -i "/DATABASE = {/,/}/s/'USER': '[^']*'/'USER': '$DB_USER'/" /opt/netbox/netbox/netbox/configuration.py
+sed -i "/DATABASE = {/,/}/s/'PASSWORD': '[^']*'/'PASSWORD': '$DB_PASS'/" /opt/netbox/netbox/netbox/configuration.py
 
 $STD /opt/netbox/upgrade.sh
 ln -s /opt/netbox/contrib/netbox-housekeeping.sh /etc/cron.daily/netbox-housekeeping
@@ -80,11 +81,11 @@ mv /opt/netbox/contrib/*.service /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable -q --now netbox netbox-rq
 
-echo "${RELEASE}" >/opt/"${APPLICATION}"_version.txt
+echo "${RELEASE}" >/opt/${APPLICATION}_version.txt
 echo -e "Netbox Secret: \e[32m$SECRET_KEY\e[0m" >>~/netbox.creds
-msg_ok "Instalado NetBox"
+msg_ok "Installed NetBox"
 
-msg_info "Configuração Django Admin"
+msg_info "Setting up Django Admin"
 DJANGO_USER=Admin
 DJANGO_PASS=$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | cut -c1-13)
 
@@ -103,13 +104,13 @@ EOF
   echo -e "Django User: \e[32m$DJANGO_USER\e[0m"
   echo -e "Django Password: \e[32m$DJANGO_PASS\e[0m"
 } >>~/netbox.creds
-msg_ok "Configurado Django Admin"
+msg_ok "Setup Django Admin"
 
 motd_ssh
 customize
 
-msg_info "Limmpando"
+msg_info "Cleaning up"
 rm "/opt/v${RELEASE}.zip"
 $STD apt-get -y autoremove
 $STD apt-get -y autoclean
-msg_ok "Limpo"
+msg_ok "Cleaned"
