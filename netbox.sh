@@ -47,17 +47,23 @@ msg_ok "Configurando PostgreSQL"
 
 msg_info "Instalando NetBox (Patience)"
 cd /opt
-RELEASE=$(curl -fsSL https://api.github.com/repos/netbox-community/netbox/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
-curl -fsSL "https://github.com/netbox-community/netbox/archive/refs/tags/v${RELEASE}.zip" -o "v${RELEASE}.zip"
-$STD unzip "v${RELEASE}.zip"
-mv /opt/netbox-"${RELEASE}"/ /opt/netbox
+#RELEASE=$(curl -fsSL https://api.github.com/repos/netbox-community/netbox/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
+#curl -fsSL "https://github.com/netbox-community/netbox/archive/refs/tags/v${RELEASE}.zip" -o "v${RELEASE}.zip"
+#$STD unzip "v${RELEASE}.zip"
+sudo wget https://github.com/netbox-community/netbox/archive/refs/tags/v4.4.4.tar.gz
+sudo tar -xzf v4.4.4.tar.gz -C /opt
+sudo ln -s /opt/netbox-4.4.4/ /opt/netbox
+
+#mv /opt/netbox-"${RELEASE}"/ /opt/netbox
 
 $STD adduser --system --group netbox
 chown --recursive netbox /opt/netbox/netbox/media/
 chown --recursive netbox /opt/netbox/netbox/reports/
 chown --recursive netbox /opt/netbox/netbox/scripts/
 
-mv /opt/netbox/netbox/netbox/configuration_example.py /opt/netbox/netbox/netbox/configuration.py
+cd /opt/netbox/netbox/netbox/
+sudo cp configuration_example.py configuration.py
+#mv /opt/netbox/netbox/netbox/configuration_example.py /opt/netbox/netbox/netbox/configuration.py
 
 SECRET_KEY=$(python3 /opt/netbox/netbox/generate_secret_key.py)
 ESCAPED_SECRET_KEY=$(printf '%s\n' "$SECRET_KEY" | sed 's/[&/\]/\\&/g')
@@ -65,7 +71,7 @@ ESCAPED_SECRET_KEY=$(printf '%s\n' "$SECRET_KEY" | sed 's/[&/\]/\\&/g')
 sed -i 's/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = ["*"]/' /opt/netbox/netbox/netbox/configuration.py
 sed -i "s|SECRET_KEY = ''|SECRET_KEY = '${ESCAPED_SECRET_KEY}'|" /opt/netbox/netbox/netbox/configuration.py
 sed -i "/DATABASES = {/,/}/s/'USER': '[^']*'/'USER': '$DB_USER'/" /opt/netbox/netbox/netbox/configuration.py
-sed -i "/DATABASES = {/,/}/s/'PASSWORD': '[^']*'/'PASSWORD': '$DB_PASS'/" /opt/netbox/netbox/netbox/configuration.py
+sed -i "/DATABASES = {/,/}/s/'PASSWORD': '[^']*'/'PASSWORD': '123456'/" /opt/netbox/netbox/netbox/configuration.py
 
 $STD /opt/netbox/upgrade.sh
 ln -s /opt/netbox/contrib/netbox-housekeeping.sh /etc/cron.daily/netbox-housekeeping
