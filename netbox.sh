@@ -19,7 +19,7 @@ $STD apt-get install -y \
   zlib1g-dev
 msg_ok "Instalado Dependencias"
 
-PG_VERSION="17" setup_postgresql
+PG_VERSION="16" setup_postgresql
 
 msg_info "Instalando Python"
 $STD apt-get install -y \
