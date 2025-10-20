@@ -9,6 +9,7 @@ msg_ok() {
 msg_info "Instalando Dependencias"
 $STD apt-get install -y \
   apache2 \
+  unzip \
   redis-server \
   postgresql \
   build-essential \
@@ -43,6 +44,14 @@ $STD sudo -u postgres psql -c "CREATE DATABASE $DB_NAME WITH OWNER $DB_USER TEMP
   echo -e "Netbox Database Name: \e[32m$DB_NAME\e[0m"
 } >>~/netbox.creds
 msg_ok "Configurando PostgreSQL"
+
+
+msg_info "Installing NetBox (Patience)"
+cd /opt
+RELEASE=$(curl -s https://api.github.com/repos/netbox-community/netbox/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
+wget -q "https://github.com/netbox-community/netbox/archive/refs/tags/v${RELEASE}.zip"
+unzip -q "v${RELEASE}.zip"
+mv /opt/netbox-${RELEASE}/ /opt/netbox
 
 msg_info "Instalando NetBox (Patience)"
 cd /opt
