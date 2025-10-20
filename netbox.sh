@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
 
+msg_ok() {
+    echo -e "\e[32m[OK]\e[0m $1"
+}
+
+
 msg_info "Installing Dependencies"
 $STD apt-get install -y \
   apache2 \

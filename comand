@@ -1,6 +1,6 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/docker-install.sh)"
 
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/npm-install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/npm-install2.sh)"
 
 docker run -d -p 5216:5216 -v myspeed:/myspeed/data --restart=unless-stopped --name MySpeed germannewsmaker/myspeed
 
@@ -19,3 +19,45 @@ services:
       - SECRET_ENCRYPTION_KEY=97f10f3b89be9f70ec6d6b557757afa181450c3747a01d8da5f08c5f1e03f6d1
     ports:
       - '5216:5216'
+
+
+
+
+scp root@10.7.1.71:/var/lib/docker/volumes/ansible-seduc_ansible_seduc_config/_data/config.json /root/backup/ansible
+
+/root/gsior/backup/ansible
+    scp /path/to/local/file.txt username@remote_host:/path/to/remote/directory/
+
+
+    scp -r  ramon@10.7.0.59:/path/to/remote/parent_directory/
+
+    scp root@10.7.0.59:/home/ramon/volumes.zip /root/backup/ansible
+
+    echo "Seduc@333" | docker secret create admin_password -
+
+
+
+docker swarm init --advertise-addr 10.7.0.50
+
+
+curl -L https://downloads.portainer.io/ce-lts/portainer-agent-stack.yml -o portainer-agent-stack.yml
+
+
+# Add Docker's official GPG key:
+apt-get update
+apt-get install ca-certificates curl
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
+
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+

@@ -1,0 +1,1 @@
+openssl req -x509 -sha256 -days 356 -nodes -newkey rsa:2048 -keyout rootCA.key -out rootCA.crt
