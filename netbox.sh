@@ -6,7 +6,7 @@ msg_ok() {
 }
 
 
-msg_info "Installing Dependencies"
+msg_info "Instalando Dependencias"
 $STD apt-get install -y \
   apache2 \
   redis-server \
@@ -17,19 +17,19 @@ $STD apt-get install -y \
   libpq-dev \
   libssl-dev \
   zlib1g-dev
-msg_ok "Installed Dependencies"
+msg_ok "Instalado Dependencias"
 
 PG_VERSION="17" setup_postgresql
 
-msg_info "Installing Python"
+msg_info "Instalando Python"
 $STD apt-get install -y \
   python3 \
   python3-pip \
   python3-venv \
   python3-dev
-msg_ok "Installed Python"
+msg_ok "Instalado Python"
 
-msg_info "Setting up PostgreSQL"
+msg_info "Configuração PostgreSQL"
 DB_NAME=netbox
 DB_USER=netbox
 DB_PASS=$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | cut -c1-13)
@@ -41,9 +41,9 @@ $STD sudo -u postgres psql -c "CREATE DATABASE $DB_NAME WITH OWNER $DB_USER TEMP
   echo -e "Netbox Database Password: \e[32m$DB_PASS\e[0m"
   echo -e "Netbox Database Name: \e[32m$DB_NAME\e[0m"
 } >>~/netbox.creds
-msg_ok "Set up PostgreSQL"
+msg_ok "Configurando PostgreSQL"
 
-msg_info "Installing NetBox (Patience)"
+msg_info "Instalando NetBox (Patience)"
 cd /opt
 RELEASE=$(curl -fsSL https://api.github.com/repos/netbox-community/netbox/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
 curl -fsSL "https://github.com/netbox-community/netbox/archive/refs/tags/v${RELEASE}.zip" -o "v${RELEASE}.zip"
@@ -81,9 +81,9 @@ systemctl enable -q --now netbox netbox-rq
 
 echo "${RELEASE}" >/opt/"${APPLICATION}"_version.txt
 echo -e "Netbox Secret: \e[32m$SECRET_KEY\e[0m" >>~/netbox.creds
-msg_ok "Installed NetBox"
+msg_ok "Instalado NetBox"
 
-msg_info "Setting up Django Admin"
+msg_info "Configuração Django Admin"
 DJANGO_USER=Admin
 DJANGO_PASS=$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | cut -c1-13)
 
@@ -102,13 +102,13 @@ EOF
   echo -e "Django User: \e[32m$DJANGO_USER\e[0m"
   echo -e "Django Password: \e[32m$DJANGO_PASS\e[0m"
 } >>~/netbox.creds
-msg_ok "Setup Django Admin"
+msg_ok "Configurado Django Admin"
 
 motd_ssh
 customize
 
-msg_info "Cleaning up"
+msg_info "Limmpando"
 rm "/opt/v${RELEASE}.zip"
 $STD apt-get -y autoremove
 $STD apt-get -y autoclean
-msg_ok "Cleaned"
+msg_ok "Limpo"
