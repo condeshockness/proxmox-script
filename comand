@@ -2,6 +2,9 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-s
 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/npm-install2.sh)"
 
+
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/condeshockness/proxmox-script/main/netbox.sh)"
+
 docker run -d -p 5216:5216 -v myspeed:/myspeed/data --restart=unless-stopped --name MySpeed germannewsmaker/myspeed
 
 #---------------------------------------------------------------------#
